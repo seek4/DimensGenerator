@@ -27,10 +27,9 @@ public class GenerateValueFiles {
 	private static final String SUPPORT_DIMESION = "800,480;960,540;1280,720;1920,1080;1280,400;1200,400;1280,720;2048,"
 			+ "1536;1600,480;1280,480;854,480;480,272;800,432;1200,480;710,440;800,440;1920,480;980,400;1280,408;1280,352;1280,408;694,480;650,480;1184,384;1024,600;1024,720;";
 
-	
 	private final static String VALUE_DP_TEMPLATE = "values-w{0}dp-h{1}dp";
 	private static final String SUPPORT_DP = "999,400";
-	
+
 	private String supportStr = SUPPORT_DIMESION;
 
 	public GenerateValueFiles(int baseX, int baseY, String supportStr) {
@@ -53,9 +52,6 @@ public class GenerateValueFiles {
 		System.out.println(dir.getAbsoluteFile());
 	}
 
-	
-	
-	
 	/**
 	 * @param supportStr
 	 *            w,h_...w,h;
@@ -94,8 +90,7 @@ public class GenerateValueFiles {
 
 	}
 
-	
-	private void generateDPXmlFile(int w,int h){
+	private void generateDPXmlFile(int w, int h) {
 		StringBuffer sbForWidth = new StringBuffer();
 		sbForWidth.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
 		sbForWidth.append("<resources>");
@@ -118,17 +113,16 @@ public class GenerateValueFiles {
 		}
 		sbForHeight.append(HTemplate.replace("{0}", baseH + "").replace("{1}", h + ""));
 		sbForHeight.append("</resources>");
-		
+
 		StringBuffer sbForSize = new StringBuffer();
 		sbForSize.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
 		sbForSize.append("<resources>");
-		float cells = cellw<=cellh?cellw:cellh;
+		float cells = cellw <= cellh ? cellw : cellh;
 		System.out.println("size : " + h + "," + baseH + "," + cells);
 		for (int i = 1; i < 200; i++) {
 			sbForSize.append(SIZETemplate.replace("{0}", i + "").replace("{1}", change(cells * i) + ""));
 		}
 		sbForSize.append("</resources>");
-		
 
 		File fileDir = new File(dirStr + File.separator + VALUE_TEMPLATE.replace("{0}", w + "")//
 				.replace("{1}", h + ""));
@@ -151,9 +145,7 @@ public class GenerateValueFiles {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
+
 	private void generateXmlFile(int w, int h) {
 		StringBuffer sbForWidth = new StringBuffer();
 		sbForWidth.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
@@ -177,17 +169,16 @@ public class GenerateValueFiles {
 		}
 		sbForHeight.append(HTemplate.replace("{0}", baseH + "").replace("{1}", h + ""));
 		sbForHeight.append("</resources>");
-		
+
 		StringBuffer sbForSize = new StringBuffer();
 		sbForSize.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
 		sbForSize.append("<resources>");
-		float cells = cellw<=cellh?cellw:cellh;
+		float cells = cellw <= cellh ? cellw : cellh;
 		System.out.println("size : " + h + "," + baseH + "," + cells);
 		for (int i = 1; i < 200; i++) {
 			sbForSize.append(SIZETemplate.replace("{0}", i + "").replace("{1}", change(cells * i) + ""));
 		}
 		sbForSize.append("</resources>");
-		
 
 		File fileDir = new File(dirStr + File.separator + VALUE_TEMPLATE.replace("{0}", w + "")//
 				.replace("{1}", h + ""));
@@ -232,7 +223,6 @@ public class GenerateValueFiles {
 				addition = args[0];
 			}
 		} catch (NumberFormatException e) {
-
 			System.err.println("right input params : java -jar xxx.jar width height w,h_w,h_..._w,h;");
 			e.printStackTrace();
 			System.exit(-1);
